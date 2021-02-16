@@ -1,5 +1,3 @@
-const { DiscordAPIError } = require("discord.js");
-
 const workspace = Blockly.inject('blocklyDiv', { toolbox: document.getElementById('toolbox') });
 const client = new Discord.Client()
 
