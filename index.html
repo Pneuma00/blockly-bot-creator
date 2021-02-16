@@ -1,14 +1,19 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <meta charset="utf-8">
         <title>Blockly Bot Creator</title>
+        <script src="https://unpkg.com/blockly/blockly.min.js"></script>
+        <script src="https://raw.githack.com/discordjs/discord.js/webpack/discord.stable.min.js"></script>
     </head>
     <body>
         <div id="blocklyDiv" style="height: 480px; width: 600px;"></div>
         <xml id="toolbox" style="display: none">
             <block type="controls_if"></block>
+            <block type="discord_onready"></block>
+            <block type="discord_sendmessage"></block>
+            <block type="discord_login"></block>
         </xml>
-        <script src="https://unpkg.com/blockly/blockly.min.js"></script>
         <script src="script.js"></script>
     </body>
 </html>

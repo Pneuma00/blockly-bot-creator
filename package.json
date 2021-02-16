@@ -5,8 +5,6 @@
   "repository": "https://github.com/Pneuma714/blockly-bot-creator.git",
   "author": "Pneuma <syca0714@gmail.com>",
   "license": "MIT",
-  "dependencies": {
-    "blockly": "^4.20201217.0"
-  },
+  "dependencies": {},
   "type": "module"
 }
