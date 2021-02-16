@@ -7,5 +7,6 @@
   "license": "MIT",
   "dependencies": {
     "blockly": "^4.20201217.0"
-  }
+  },
+  "type": "module"
 }
