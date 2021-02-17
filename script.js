@@ -1,5 +1,7 @@
 const workspace = Blockly.inject('blocklyDiv', { toolbox: document.getElementById('toolbox') });
-const client = new Discord.Client()
+let client = new Discord.Client()
+
+const token = prompt('봇의 토큰을 입력해주세요.')
 
 workspace.addChangeListener(() => {
     const code = Blockly.JavaScript.workspaceToCode(workspace);
@@ -7,11 +9,20 @@ workspace.addChangeListener(() => {
 })
 
 document.getElementById('run').addEventListener('click', () => {
-    const code = document.getElementById('code').value
+    console.log('Starting the bot...')
 
     try {
-        eval(code);
+        client = new Discord.Client()
+        client.on('ready', () => console.log('Bot is Ready!'))
+
+        eval(document.getElementById('code').value)
+        client.login(token)
     } catch (e) {
-        alert(e);
+        alert(e)
     }
+})
+
+document.getElementById('stop').addEventListener('click', () => {
+    client.destroy()
+    console.log('Stopped the bot.')
 })

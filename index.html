@@ -9,6 +9,7 @@
     </head>
     <body>
         <button id="run">Run</button>
+        <button id="stop">Stop</button>
         <div id="container">
             <div id="blocklyDiv" style="height: 600px; width: 1200px;"></div>
             <xml xmlns="https://developers.google.com/blockly/xml" id="toolbox" style="display: none">
@@ -338,11 +339,14 @@
                 <category name="Property">
                     <block type="property_content"></block>
                     <block type="property_author"></block>
-                    <block type="property_channelid"></block>
-                    <block type="property_guildid"></block>
+                    <block type="property_channel"></block>
+                    <block type="property_guild"></block>
+                    <block type="property_id"></block>
+                </category>
+                <category name="Condition">
+                    <block type="condition_isuserbot"></block>
                 </category>
                 <category name="Behavior">
-                    <block type="behavior_login"></block>
                     <block type="behavior_sendmessage"></block>
                 </category>
             </xml>

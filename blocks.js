@@ -75,8 +75,8 @@ Blockly.defineBlocksWithJsonArray([
         "helpUrl": ""
     },
     {
-        "type": "property_channelid",
-        "message0": "channel id of %1",
+        "type": "property_channel",
+        "message0": "channel of %1",
         "args0": [
             {
                 "type": "input_value",
@@ -91,8 +91,8 @@ Blockly.defineBlocksWithJsonArray([
         "helpUrl": ""
     },
     {
-        "type": "property_guildid",
-        "message0": "guild id of %1",
+        "type": "property_guild",
+        "message0": "guild of %1",
         "args0": [
             {
                 "type": "input_value",
@@ -102,27 +102,49 @@ Blockly.defineBlocksWithJsonArray([
         ],
         "inputsInline": true,
         "output": null,
+        "colour": 230,
+        "tooltip": "",
+        "helpUrl": ""
+    },
+    {
+        "type": "property_id",
+        "message0": "id of %1",
+        "args0": [
+            {
+                "type": "input_value",
+                "name": "PARAM",
+                "check": [
+                    "event_param_message",
+                    "property_author",
+                    "property_channel",
+                    "property_guild"
+                ]
+            }
+        ],
+        "inputsInline": true,
+        "output": null,
+        "colour": 230,
+        "tooltip": "",
+        "helpUrl": ""
+    },
+    // Condition
+    {
+        "type": "condition_isuserbot",
+        "message0": "is %1 a bot?",
+        "args0": [
+            {
+                "type": "input_value",
+                "name": "USER",
+                "check": "property_author"
+            }
+        ],
+        "inputsInline": true,
+        "output": "Boolean",
         "colour": 230,
         "tooltip": "",
         "helpUrl": ""
     },
     // Behavior
-    {
-        "type": "behavior_login",
-        "message0": "Login with %1",
-        "args0": [
-            {
-                "type": "input_value",
-                "name": "TOKEN",
-                "check": "String"
-            }
-        ],
-        "previousStatement": null,
-        "nextStatement": null,
-        "colour": 230,
-        "tooltip": "Make your bot login with a token",
-        "helpUrl": ""
-    },
     {
         "type": "behavior_sendmessage",
         "message0": "Send message %1 content %2 channel id %3",
@@ -170,22 +192,27 @@ Blockly.JavaScript['property_content'] = block => {
 
 Blockly.JavaScript['property_author'] = block => {
     const msg = Blockly.JavaScript.valueToCode(block, 'MESSAGE', Blockly.JavaScript.ORDER_ATOMIC)
-    return [`${msg}.author.username`, Blockly.JavaScript.ORDER_NONE]
+    return [`${msg}.author`, Blockly.JavaScript.ORDER_NONE]
 }
 
-Blockly.JavaScript['property_channelid'] = block => {
+Blockly.JavaScript['property_channel'] = block => {
     const msg = Blockly.JavaScript.valueToCode(block, 'MESSAGE', Blockly.JavaScript.ORDER_ATOMIC)
-    return [`${msg}.channel.id`, Blockly.JavaScript.ORDER_NONE]
+    return [`${msg}.channel`, Blockly.JavaScript.ORDER_NONE]
 }
 
-Blockly.JavaScript['property_guildid'] = block => {
+Blockly.JavaScript['property_guild'] = block => {
     const msg = Blockly.JavaScript.valueToCode(block, 'MESSAGE', Blockly.JavaScript.ORDER_ATOMIC)
-    return [`${msg}.guild.id`, Blockly.JavaScript.ORDER_NONE]
+    return [`${msg}.guild`, Blockly.JavaScript.ORDER_NONE]
 }
 
-Blockly.JavaScript['behavior_login'] = block => {
-    const token = Blockly.JavaScript.valueToCode(block, 'TOKEN', Blockly.JavaScript.ORDER_ATOMIC)
-    return `client.login(${token})\n`
+Blockly.JavaScript['property_id'] = block => {
+    const param = Blockly.JavaScript.valueToCode(block, 'PARAM', Blockly.JavaScript.ORDER_ATOMIC)
+    return [`${param}.id`, Blockly.JavaScript.ORDER_NONE]
+}
+
+Blockly.JavaScript['condition_isuserbot'] = block => {
+    const user = Blockly.JavaScript.valueToCode(block, 'USER', Blockly.JavaScript.ORDER_ATOMIC)
+    return [`${user}.bot`, Blockly.JavaScript.ORDER_NONE]
 }
 
 Blockly.JavaScript['behavior_sendmessage'] = block => {
