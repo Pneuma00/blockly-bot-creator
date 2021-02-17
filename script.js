@@ -1,4 +1,17 @@
-const workspace = Blockly.inject('blocklyDiv', { toolbox: document.getElementById('toolbox') });
+const workspace = Blockly.inject('blocklyDiv', {
+    toolbox: document.getElementById('toolbox'),
+    grid: {
+        spacing: 20,
+        length: 3,
+        colour: '#ccc',
+    },
+    zoom: {
+        controls: true,
+        wheel: true,
+        scaleSpeed: 1.1,
+        pinch: true
+    },
+})
 let client = new Discord.Client()
 
 const token = prompt('봇의 토큰을 입력해주세요.')
